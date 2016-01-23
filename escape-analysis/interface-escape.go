@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"fmt"
 	"os"
 )
 
@@ -13,7 +12,6 @@ func main() {
 	h2(array)
 }
 
-// g has no escape
 func g(a interface{}) {
 	switch v := a.(type) {
 	case int:
@@ -27,7 +25,6 @@ func g(a interface{}) {
 	}
 }
 
-// h has an escape.
 func h(as ...interface{}) {
 	for _, a := range as {
 		g(a)
