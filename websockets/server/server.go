@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
@@ -21,4 +22,10 @@ func main() {
 func EchoServer(ws *websocket.Conn) {
 	log.Print("Got echo request")
 	io.Copy(ws, ws)
+
+	go func() {
+		time.After(2 * time.Second)
+		log.Print("Writing again...")
+		io.WriteString(ws, "this is another test")
+	}()
 }
