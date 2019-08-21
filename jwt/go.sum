@@ -1,0 +1,3 @@
+github.com/drichardson/go-examples v0.0.0-20190213195835-4bf8d463fd68 h1:ePOjz3lOIXY2ia1r5Iv7XtYJremqRqub4CyCJxjeb3k=
+github.com/pascaldekloe/jwt v1.5.0 h1:gQLinMTWbtOVXxhDbxoOIPrV+a01GbiTvs13dLlprV8=
+github.com/pascaldekloe/jwt v1.5.0/go.mod h1:qYF2nPEHQyub4Bg8CAOUct0Sttd33LkWyprzicIr6OQ=
