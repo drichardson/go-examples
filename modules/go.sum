@@ -2,6 +2,8 @@ github.com/drichardson/hello v0.0.0-20190823050739-7447b60075ba h1:TER2VBqQVZjZ1
 github.com/drichardson/hello v0.0.0-20190823050739-7447b60075ba/go.mod h1:yqpaeN+hnqxnpYLdDEGFOa3DKbC3XQJzVRqldHJpvYk=
 github.com/drichardson/hello v1.0.0 h1:U0peyRihAYRAwELZ2/A99t60My5nVrVrRa33XXkQpOw=
 github.com/drichardson/hello v1.0.0/go.mod h1:yqpaeN+hnqxnpYLdDEGFOa3DKbC3XQJzVRqldHJpvYk=
+github.com/drichardson/hello v1.0.1 h1:Zp+f8fQlg0y1EHkHp/zIpR0E06t0iI27us1eJzddijs=
+github.com/drichardson/hello v1.0.1/go.mod h1:yqpaeN+hnqxnpYLdDEGFOa3DKbC3XQJzVRqldHJpvYk=
 golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
