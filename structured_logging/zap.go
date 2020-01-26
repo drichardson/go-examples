@@ -1,23 +1,38 @@
 package main
 
 import (
-	"github.com/uber-go/zap"
+	"fmt"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+	"os"
 )
 
 func main() {
-	loggers := []zap.Logger{
-		zap.New(zap.NewTextEncoder()),
-		zap.New(zap.NewJSONEncoder()),
-		zap.New(zap.NewJSONEncoder(zap.NoTime())),
+	prod, err := zap.NewProduction()
+	if err != nil {
+		panic(err)
+	}
+	example := zap.NewExample()
+
+	encoderCfg := zap.NewProductionEncoderConfig()
+	encoderCfg.TimeKey = ""
+	atom := zap.NewAtomicLevel()
+	atom.SetLevel(zapcore.InfoLevel)
+	custom := zap.New(zapcore.NewCore(
+		zapcore.NewJSONEncoder(encoderCfg),
+		zapcore.Lock(os.Stdout),
+		atom))
+
+	loggers := []*zap.Logger{
+		prod,
+		example,
+		custom,
 	}
 
 	for _, l := range loggers {
-
-		l.SetLevel(zap.DebugLevel)
+		fmt.Printf("LOGGER: %v\n", l)
 
 		l.Debug("A debug message")
-
-		l.SetLevel(zap.InfoLevel)
 
 		l.Debug("Shouldn't see this message")
 		l.Info("An info message with fields.",
