@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	//"github.com/pion/dtls"
 	"flag"
+	"fmt"
+	"github.com/pion/dtls"
 	"net"
 )
 
@@ -20,15 +20,31 @@ func main() {
 		panic(err)
 	}
 
-	conn, err := net.DialUDP("udp", nil, raddr)
-	if err != nil {
-		panic(err)
+	var conn net.Conn
+
+	if *encrypt {
+
+		conn, err = dtls.Dial("udp", raddr, &dtls.Config{
+			InsecureSkipVerify: true,
+		})
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		conn, err = net.DialUDP("udp", nil, raddr)
+		if err != nil {
+			panic(err)
+		}
 	}
-	defer conn.Close()
 
 	n, err := conn.Write([]byte(`Hello World UDP`))
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("Write %d bytes.\n", n)
+
+	err = conn.Close()
+	if err != nil {
+		panic(err)
+	}
 }
