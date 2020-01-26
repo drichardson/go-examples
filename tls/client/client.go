@@ -35,6 +35,8 @@ func main() {
 		}
 	}
 
+	defer conn.Close()
+
 	b := make([]byte, 1000)
 	n, err := conn.Read(b)
 	if err != nil {

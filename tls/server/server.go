@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
-	"io"
+	//	"io"
 	"log"
 	"net"
 	"os"
@@ -121,14 +121,13 @@ func main() {
 			panic(err)
 		}
 
-		var keyWriter io.WriteCloser
+		keyWriter := os.Stdout
 
 		if *keyWriterFile != "" {
-			keyWriter, err := os.Create(*keyWriterFile)
+			keyWriter, err = os.Create(*keyWriterFile)
 			if err != nil {
 				panic(err)
 			}
-			defer keyWriter.Close()
 		}
 
 		config := &tls.Config{
