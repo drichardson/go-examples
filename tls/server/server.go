@@ -4,13 +4,16 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net"
+	"os"
 )
 
 var encrypt *bool = flag.Bool("encrypt", false, "Encrypt underlying connection")
 var address *string = flag.String("address", ":5858", "Address to listen on")
 var serverName *string = flag.String("servername", "Harry", "Name of server")
+var keyWriterFile *string = flag.String("keywriter", "", "Path to TLS key file. For use with Wireshark.")
 
 var certificate string = `
 -----BEGIN CERTIFICATE-----
@@ -118,9 +121,20 @@ func main() {
 			panic(err)
 		}
 
+		var keyWriter io.WriteCloser
+
+		if *keyWriterFile != "" {
+			keyWriter, err := os.Create(*keyWriterFile)
+			if err != nil {
+				panic(err)
+			}
+			defer keyWriter.Close()
+		}
+
 		config := &tls.Config{
 			ServerName:   *serverName,
 			Certificates: []tls.Certificate{cert},
+			KeyLogWriter: keyWriter,
 		}
 		listener = tls.NewListener(listener, config)
 	}
