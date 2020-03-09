@@ -1,0 +1,9 @@
+watch: true
+intopt: 1
+stropt: hello
+durationopt: 13ms
+mapopt:
+  mykey1: my value 10
+  mykey2: my value 2
+structopt: 100
+bool1: true
